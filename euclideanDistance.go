@@ -34,18 +34,18 @@ func calcDistances(in []float64, ds []float64) float64 {
 }
 
 func getShortestDistance(dist [][][]float64) [][]float64 {
-	min := dist[0][2]
+	//dist contains: [[datasetLine], [datasetLineResult], [distanceWithInput]]
+	minDist := dist[0][2]
 	max := dist[0][2]
 	var datasetNearResult [][]float64
 	for i := 0; i < len(dist); i++ {
-		//fmt.Println(dist[i][1])
+		//fmt.Println(dist[i])
 		if dist[i][2][0] > max[0] {
 			max = dist[i][0]
 		}
-		/*fmt.Println(min[0])
-		fmt.Println(dist[i][1][0])*/
-		if dist[i][2][0] < min[0] {
-			min = dist[i][0]
+		//fmt.Println(dist[i][2][0])
+		if dist[i][2][0] < minDist[0] {
+			minDist = dist[i][2]
 			datasetNearResult = dist[i]
 		}
 		//fmt.Println(dist[i][1])

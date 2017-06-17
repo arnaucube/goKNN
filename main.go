@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 	dataset := readDataset("datasets/poker/poker-hand-training-true.data", "\n", ",")
@@ -9,11 +12,14 @@ func main() {
 	//fmt.Println(inputs)
 
 	var datasetDistances [][][]float64
-	for _, input := range inputs {
+	for k, input := range inputs {
 		datasetDistances = euclideanDistance(dataset, input)
 		r := getShortestDistance(datasetDistances)
+		fmt.Println("iteration " + strconv.Itoa(k))
 		fmt.Println(input)
 		fmt.Println(r)
+		fmt.Print("result: ")
 		fmt.Println(r[1])
+		fmt.Println("---")
 	}
 }
